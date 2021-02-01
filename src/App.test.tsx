@@ -1,9 +1,12 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import App from "./App";
 
 test("renders hello world", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/hello react/i);
+  const { getByText } = render(<App />);
+  const linkElement = getByText(/hello react/i);
   expect(linkElement).toBeInTheDocument();
+
+  const label = getByText("Current");
+  expect(label).toBeInTheDocument();
 });
