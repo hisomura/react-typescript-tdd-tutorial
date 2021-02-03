@@ -13,12 +13,17 @@ class Counter extends Component<Props, CounterState> {
     }
   }
 
+  incrementCounter(event: React.MouseEvent<HTMLSpanElement>) {
+    const inc = event.shiftKey ? 10 : 1;
+    this.setState((prev) => ({ count: prev.count + inc }));
+  }
+
   render() {
     const { label = "Counter" } = this.props;
     return (
       <div>
         <label htmlFor="counter">{label}</label>
-        <span id="counter" role="counter">
+        <span id="counter" role="counter" onClick={this.incrementCounter.bind(this)}>
           {this.state.count}
         </span>
       </div>
